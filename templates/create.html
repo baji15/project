@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Expense Logger</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      /* background-color: #4CAF50; */
+      background-color: transparent;
+      color: white;
+      padding: 10px 0;
+    }
+    .container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 400px;
+      background: transparent;
+      padding: 20px;
+      border-radius: 8px;
+      
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .link {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Create Account</h1>
+  </header>
+  <div class="container">
+    <form method="post">
+      <input type="text" name="username" placeholder="Enter Username" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" name="Confirm password" placeholder="Confirm Password" required>
+      <button type="Register">Submit</button>
+    </form>
+    
+  </div>
+</body>
+</html>
+

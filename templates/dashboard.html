@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Simple Notes Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #17181a;
+            color: white;
+        }
+        nav span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .dashboard-content {
+            padding: 20px;
+        }
+        h4 {
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            padding: 5px;
+        }
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .header-actions input[type="text"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class=flashes>
+  {% for message in messages %}
+    <center><p>{{ message }}</p></center>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div>
+            <span>Simple Notes</span>
+        </div>
+        <div>
+            <span>{{ session.get('user') }}</span>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <!-- Dropdown Links -->
+
+        <div>
+            <h4>Menu</h4>
+            <select onchange="location = this.value;">
+                <option value="" disabled selected>Select an option</option>
+                <option value="{{ url_for('viewallnotes') }}">View All Notes</option>
+                <option value="{{ url_for('addnotes') }}">Create Notes</option>
+                <option value="{{url_for('getexceldata')}}">Generate Excel Sheet</option>
+                <option value="{{url_for('uploadfiles')}}">Upload</option>
+                <option value="#">View All Files</option>
+            </select>
+        </div>
+
+        <!-- Search and Logout Section -->
+        
+        <div class="header-actions">
+            <form class="d-flex" action="{{url_for('search')}}" method="post">
+                <input type="text" placeholder="Search">
+                <!-- <button type="submit"><Search></Search></button> -->
+            </form>
+            <button onclick="alert('Logged Out')">Logout</button></div><form action=""></form>
+        </div>
+    </div>
+</body>
+{% block content %}{% endblock %}
+{%if sdata%}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Created At</th>
+            <th>link</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Example rows (to be replaced by backend data) -->
+         {% for i in sdata %}
+        <tr>
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+            <td>{{i[3]}}</td>
+           
+            <td><a href="{{url_for('viewnotes',nid=i[0])}}">View</a></td>
+            <td><a href="{{url_for('updatenotes',nid=i[0])}}">Update</a></td>
+            <td><a href="{{url_for('deletenotes',nid=i[0])}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%endif%}
+</html>

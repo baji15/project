@@ -1,0 +1,29 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class=flashes>
+  {% for message in messages %}
+    <center><p>{{ message }}</p></center>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+<body>
+    <center>
+    <form method="POST">
+        <h1>Create Notes</h1>
+        <p>
+            <input type="text" name="title" placeholder="Enter title">
+        </p>
+        <p>
+            <textarea name="description" placeholder="Enter description"></textarea>
+        </p>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+    </center>
+</body>
+{% endblock %}
